@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
+import {OnOff} from "./OnOff/OnOff";
+import {UncontrolledAccordion} from "./components/Accordion/UncontrolledAccordion";
+import {UncontrolledRating} from "./components/Rating/UncontrolledRating";
 
 
 // function declaration
@@ -12,8 +15,15 @@ function App() {
 
     //обязана вернуть JSX
     return (
-        <div>
+        <div className={'App'}>
+            <Accordion titleValue={'Menu'} collapsed={false}/>
+            <UncontrolledAccordion titleValue={'Users'}/>
+            <Rating value={3}/>
+            <UncontrolledRating />
 
+
+            {/*<OnOff on={false}/>
+            <OnOff on={true}/>*/}
 
 
             {/*<Accordion titleValue={"Menu"} collapsed={true}/>
