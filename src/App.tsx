@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
-import {Rating} from "./components/Rating/Rating";
-import {OnOff} from "./OnOff/OnOff";
-import {UncontrolledAccordion} from "./components/Accordion/UncontrolledAccordion";
+import {Rating, RatingValueType} from "./components/Rating/Rating";
+ import {UncontrolledAccordion} from "./components/Accordion/UncontrolledAccordion";
 import {UncontrolledRating} from "./components/Rating/UncontrolledRating";
+import {UncontrolledOnOff} from "./OnOff/UncontrolledOnOff";
+import {OnOff} from "./OnOff/OnOff";
 
 
 // function declaration
@@ -13,15 +14,32 @@ function App() {
     console.log("App rendering")
     //что-то полезное
 
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+
+    let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+
+    let [on, setOn] = useState<boolean>(false)
+
     //обязана вернуть JSX
     return (
         <div className={'App'}>
-            <Accordion titleValue={'Menu'} collapsed={false}/>
+
+            <OnOff on={on} onChange={setOn}/>
+
+            <UncontrolledOnOff onChange = {setOn}/> {on.toString()}
+
+            <Accordion
+                titleValue={'Menu'}
+                collapsed={accordionCollapsed}
+                onClick = {() => {setAccordionCollapsed(!accordionCollapsed)}}/>
+
             <UncontrolledAccordion titleValue={'Users'}/>
-{/*
-            <Rating value={3}/>
-*/}
+
+            <Rating value={ratingValue} onClick = {setRatingValue}/>
+
             <UncontrolledRating />
+
+
 
 
             {/*<OnOff on={false}/>
